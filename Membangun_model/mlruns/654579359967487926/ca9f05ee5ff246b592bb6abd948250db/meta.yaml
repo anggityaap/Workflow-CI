@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654579359967487926/ca9f05ee5ff246b592bb6abd948250db/artifacts
+end_time: 1783505606801
+entry_point_name: ''
+experiment_id: '654579359967487926'
+lifecycle_stage: active
+run_id: ca9f05ee5ff246b592bb6abd948250db
+run_name: vaunted-colt-17
+run_uuid: ca9f05ee5ff246b592bb6abd948250db
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783505606204
+status: 3
+tags: []
+user_id: anggitya

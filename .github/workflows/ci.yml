@@ -1,0 +1,32 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r Membangun_model/requirements.txt
+        pip install flake8
+        
+    - name: Linting code with flake8
+      run: |
+        # Mengecek apakah ada error sintaks atau kode yang tidak rapi di modelling.py
+        flake8 Membangun_model/modelling.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 Membangun_model/modelling.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics

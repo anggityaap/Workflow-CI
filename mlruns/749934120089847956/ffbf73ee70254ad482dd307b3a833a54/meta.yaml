@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/749934120089847956/ffbf73ee70254ad482dd307b3a833a54/artifacts
+end_time: 1783615866183
+entry_point_name: ''
+experiment_id: '749934120089847956'
+lifecycle_stage: active
+run_id: ffbf73ee70254ad482dd307b3a833a54
+run_name: peaceful-bass-985
+run_uuid: ffbf73ee70254ad482dd307b3a833a54
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783615865437
+status: 3
+tags: []
+user_id: anggitya

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654579359967487926/5df3e83fa2ac4cfcb50c81c855e3b16e/artifacts
+end_time: 1783505240668
+entry_point_name: ''
+experiment_id: '654579359967487926'
+lifecycle_stage: active
+run_id: 5df3e83fa2ac4cfcb50c81c855e3b16e
+run_name: bouncy-shoat-319
+run_uuid: 5df3e83fa2ac4cfcb50c81c855e3b16e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783505239987
+status: 3
+tags: []
+user_id: anggitya

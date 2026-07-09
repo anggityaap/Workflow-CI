@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654579359967487926/3c1b4cac875b4d53af935aa9818bf5e8/artifacts
+end_time: 1783504977271
+entry_point_name: ''
+experiment_id: '654579359967487926'
+lifecycle_stage: active
+run_id: 3c1b4cac875b4d53af935aa9818bf5e8
+run_name: skittish-mare-486
+run_uuid: 3c1b4cac875b4d53af935aa9818bf5e8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783504976719
+status: 3
+tags: []
+user_id: anggitya

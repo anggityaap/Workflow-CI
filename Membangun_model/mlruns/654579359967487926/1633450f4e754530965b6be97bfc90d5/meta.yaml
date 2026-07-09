@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654579359967487926/1633450f4e754530965b6be97bfc90d5/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '654579359967487926'
+lifecycle_stage: active
+run_id: 1633450f4e754530965b6be97bfc90d5
+run_name: calm-fawn-237
+run_uuid: 1633450f4e754530965b6be97bfc90d5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783504956342
+status: 1
+tags: []
+user_id: anggitya

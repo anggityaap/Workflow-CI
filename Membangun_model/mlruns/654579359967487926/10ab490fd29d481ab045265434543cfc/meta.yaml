@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/654579359967487926/10ab490fd29d481ab045265434543cfc/artifacts
+end_time: 1783505504513
+entry_point_name: ''
+experiment_id: '654579359967487926'
+lifecycle_stage: active
+run_id: 10ab490fd29d481ab045265434543cfc
+run_name: resilient-carp-398
+run_uuid: 10ab490fd29d481ab045265434543cfc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783505503964
+status: 3
+tags: []
+user_id: anggitya
