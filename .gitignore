@@ -1,0 +1,7 @@
+
+laporan.md
+*.zip
+mlruns/
+mlartifacts/
+.ipynb_checkpoints/
+INI DI UPLOAD KE GIT WORKFLOW CI/
