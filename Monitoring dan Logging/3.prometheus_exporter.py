@@ -1,28 +1,45 @@
+from flask import Flask, request, jsonify, Response
 import time
-import random
-from prometheus_client import start_http_server, Summary, Counter, Gauge
+import psutil  # Pastikan library ini sudah terinstal (pip install psutil)
+from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
-# Membuat 3 metrik sesuai kriteria:
-# 1. Counter: Menghitung total prediksi/request
-REQUEST_COUNT = Counter('model_request_count', 'Total prediksi yang dilakukan')
-# 2. Summary: Mengukur waktu yang dibutuhkan untuk prediksi (latensi)
-MODEL_LATENCY = Summary('model_latency_seconds', 'Waktu yang dibutuhkan untuk prediksi')
-# 3. Gauge: Mengukur fluktuasi akurasi model
-MODEL_ACCURACY = Gauge('model_accuracy', 'Akurasi model saat ini')
+app = Flask(__name__)
 
-def process_request():
-    """Fungsi ini mensimulasikan sebuah request prediksi ke model"""
+# Metrik untuk API model
+REQUEST_COUNT = Counter('http_requests_total', 'Total HTTP Requests')  # Total request yang diterima
+REQUEST_LATENCY = Histogram('http_request_duration_seconds', 'HTTP Request Latency')  # Waktu respons API
+THROUGHPUT = Counter('http_requests_throughput', 'Total number of requests per second')  # Throughput
+
+# Metrik untuk sistem
+CPU_USAGE = Gauge('system_cpu_usage', 'CPU Usage Percentage')  # Penggunaan CPU
+RAM_USAGE = Gauge('system_ram_usage', 'RAM Usage Percentage')  # Penggunaan RAM
+
+# Endpoint untuk Prometheus mengambil (scrape) metrik
+@app.route('/metrics', methods=['GET'])
+def metrics():
+    # Update metrik sistem secara real-time
+    CPU_USAGE.set(psutil.cpu_percent())
+    RAM_USAGE.set(psutil.virtual_memory().percent)
+    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+
+# Endpoint simulasi untuk menerima request prediksi
+@app.route('/predict', methods=['POST'])
+def predict():
+    start_time = time.time()
+    
+    # Mencatat request masuk
     REQUEST_COUNT.inc()
-    time.sleep(random.uniform(0.1, 0.5)) # Simulasi waktu proses 0.1 - 0.5 detik
-    MODEL_ACCURACY.set(random.uniform(0.85, 0.98)) # Simulasi akurasi 85% - 98%
+    THROUGHPUT.inc()
+    
+    # (Di sini biasanya adalah proses model ML Anda bekerja)
+    time.sleep(0.1) # Simulasi waktu proses model
+    
+    # Mencatat latensi (waktu respons)
+    latency = time.time() - start_time
+    REQUEST_LATENCY.observe(latency)
+    
+    return jsonify({"status": "success", "message": "Prediksi berhasil"})
 
 if __name__ == '__main__':
-    # Memulai server metrik di port 8000
-    start_http_server(8000)
-    print("Prometheus exporter berjalan di http://localhost:8000/metrics")
-    
-    # Loop untuk terus mengirimkan data metrik simulasi
-    while True:
-        with MODEL_LATENCY.time():
-            process_request()
-        time.sleep(2) # Kirim data metrik setiap 2 detik
+    # Menjalankan servis di port 8000
+    app.run(host='127.0.0.1', port=8000)
