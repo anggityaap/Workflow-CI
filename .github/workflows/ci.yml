@@ -37,6 +37,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add mlruns/
+          git add -f mlruns/ mlartifacts/
           git commit -m "Upload artefak model dari MLflow" || echo "Tidak ada perubahan untuk dikomit"
           git push
