@@ -31,7 +31,7 @@ jobs:
           pip install mlflow pandas scikit-learn
 
       - name: Run mlflow project
-        run: mlflow run MLProject --env-manager=local
+        run: mlflow run MLProject --experiment-name "Eksperimen_SML_Credit_Fraud" --env-manager=local
 
       - name: Upload to GitHub
         run: |

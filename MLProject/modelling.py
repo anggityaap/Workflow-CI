@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -9,7 +10,8 @@ from sklearn.linear_model import LogisticRegression
 # mlflow.set_tracking_uri("http://127.0.0.1:5000/") 
 
 # 2. Membuat nama eksperimen
-mlflow.set_experiment("Eksperimen_SML_Credit_Fraud")
+if "MLFLOW_RUN_ID" not in os.environ:
+    mlflow.set_experiment("Eksperimen_SML_Credit_Fraud")
 
 if __name__ == "__main__":
     print("Memuat dataset...")
