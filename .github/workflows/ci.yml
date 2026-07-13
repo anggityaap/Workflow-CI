@@ -1,32 +1,40 @@
-name: Continuous Integration
-
+name: CI
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ main ]
+
+env:
+  CSV_URL: "MLproject/creditcard_clean.csv"
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.12"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r Membangun_model/requirements.txt
-        pip install flake8
-        
-    - name: Linting code with flake8
-      run: |
-        # Mengecek apakah ada error sintaks atau kode yang tidak rapi di modelling.py
-        flake8 Membangun_model/modelling.py --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 Membangun_model/modelling.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Run actions/checkout@v3
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.7"
+
+      - name: Check Env
+        run: echo $CSV_URL
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mlflow
+
+      - name: Run mlflow project
+        run: mlflow run MLproject --env-manager=local
+
+      - name: Upload to GitHub
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add mlruns/
+          git commit -m "Upload artefak model dari MLflow" || echo "Tidak ada perubahan untuk dikomit"
+          git push
