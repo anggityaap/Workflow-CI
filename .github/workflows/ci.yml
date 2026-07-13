@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 env:
-  CSV_URL: "MLproject/creditcard_clean.csv"
+  CSV_URL: "MLProject/creditcard_clean.csv"
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
           pip install mlflow
 
       - name: Run mlflow project
-        run: mlflow run MLproject --env-manager=local
+        run: mlflow run MLProject --env-manager=local
 
       - name: Upload to GitHub
         run: |
