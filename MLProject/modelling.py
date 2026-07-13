@@ -5,13 +5,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 
 # 1. Mengatur Tracking URI ke localhost
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+# BARIS DI BAWAH INI DIJADIKAN KOMENTAR ATAU DIHAPUS AGAR TIDAK ERROR DI GITHUB ACTIONS
+# mlflow.set_tracking_uri("http://127.0.0.1:5000/") 
 
 # 2. Membuat nama eksperimen
 mlflow.set_experiment("Eksperimen_SML_Credit_Fraud")
 
 if __name__ == "__main__":
     print("Memuat dataset...")
+    # Pastikan file dataset berada di folder yang sama (MLProject)
     df = pd.read_csv('creditcard_clean.csv') 
 
     # Memisahkan fitur dan target
